@@ -1,6 +1,6 @@
 const input = document.getElementById('search-box');
 const searchbtn = document.getElementById('Search-btn');
-const displaydiv = document.getElementById('display');
+const display = document.getElementById('display');
 const show = document.getElementById('more');
 
 
@@ -14,20 +14,53 @@ let keyword = "";
 async function getimages(){
 
 
-    let url =  `https://api.unsplash.com/search/photos?page=${page}&query=${keyword}&client_id=${accesskey}`;
+    let url =  `https://api.unsplash.com/search/photos?page=${page}&query=${keyword}&per_page=12&client_id=${accesskey}`;
     let response = await fetch(url);
-    let data = response.json();
+    let data = await response.json();
+    const results = data.results;
+    results.map((results)=>{
 
-    console.log(data);
+        const img = document.createElement('img');
+        img.src = results.urls.small;
+        console.log(results.urls.small);
+        const imglink = document.createElement('a');
+        imglink.href = results.links.html;
+        imglink.appendChild(img);
+        imglink.target = "_blank";
+        display.appendChild(imglink);
+
+    })
 }
 
 
 searchbtn.addEventListener('click' ,(e)=>{
 
+        display.innerHTML = '';
+        page=1;
+        keyword = input.value;
+        getimages();
+        show.style.display="block";
 
-    page=1;
-    keyword = input.value;
+})
+
+
+
+
+input.addEventListener('keypress' ,(e)=>{
+
+
+    if (e.key === 'Enter') {
+
+        display.innerHTML = '';
+        page=1;
+        keyword = input.value;
+        getimages();
+        show.style.display="block";
+    }
+})
+
+show.addEventListener('click' , ()=>{
+
+    page++;
     getimages();
-    
-
 })
