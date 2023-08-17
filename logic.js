@@ -8,9 +8,6 @@ const accesskey = "Ye231JmnrvKeWozHoXo8RToWM51zD2MevZHfTT0qRfI";
 let page = 1;
 let keyword = "";
 
-
-
-
 async function getimages(){
 
 
