@@ -2,8 +2,6 @@ const input = document.getElementById('search-box');
 const searchbtn = document.getElementById('Search-btn');
 const display = document.getElementById('display');
 const show = document.getElementById('more');
-
-
 const accesskey = "Ye231JmnrvKeWozHoXo8RToWM51zD2MevZHfTT0qRfI";
 let page = 1;
 let keyword = "";
@@ -39,9 +37,6 @@ searchbtn.addEventListener('click' ,(e)=>{
         show.style.display="block";
 
 })
-
-
-
 
 input.addEventListener('keypress' ,(e)=>{
 
